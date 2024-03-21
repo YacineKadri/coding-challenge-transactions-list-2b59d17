@@ -15,7 +15,7 @@ import { resolvers } from './resolvers.js';
 const app = express();
 const httpServer = http.createServer(app);
 
-mongoose.connect('mongodb://mongo:27017/mydb', { useNewUrlParser: true });
+mongoose.connect('mongodb://mongo:27017/mdb', {useNewUrlParser: true})
 
 const server = new ApolloServer({
   typeDefs,

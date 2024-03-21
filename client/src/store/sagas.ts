@@ -5,17 +5,17 @@ import {
   TransactionResponse,
   TransactionReceipt,
   BrowserProvider,
-  Signer,
+  Signer
 } from "ethers";
 
 import apolloClient from "../apollo/client";
-import { Actions } from "../types";
+import { Actions} from "../types";
 import { SaveTransaction } from "../queries";
 
 function* sendTransaction() {
   const provider = new JsonRpcProvider("http://localhost:8545");
 
-  const walletProvider = new BrowserProvider(window.web3.currentProvider);
+  const walletProvider = new BrowserProvider(window.ethereum);
 
   const signer: Signer = yield walletProvider.getSigner();
 
@@ -30,7 +30,7 @@ function* sendTransaction() {
 
   const transaction = {
     to: randomAddress(),
-    value: 1000000000000000000,
+    value: 1
   };
 
   try {
@@ -57,8 +57,9 @@ function* sendTransaction() {
       mutation: SaveTransaction,
       variables,
     });
+
   } catch (error) {
-    //
+
   }
 }
 
